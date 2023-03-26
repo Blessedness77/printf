@@ -8,14 +8,23 @@
  */
 int dec2bin(int dec)
 {
-	int binval = 0;
+	int binval = 0, decval = dec, si = 0;
 
-	if (dec)
+	if (dec < 0)
 	{
-		binval += dec2bin(dec / 2);
+		decval = -dec;
+		si = 1;
+	}
+
+	if (decval)
+	{
+		binval += dec2bin(decval / 2);
 		binval *= 10;
 	}
-	binval += (dec % 2);
+	binval += (decval % 2);
+
+	if (si)
+		binval *= -1;
 
 	return (binval);
 }
