@@ -48,36 +48,23 @@ int _printf(const char *format, ...)
  */
 int format_handle(const char *str, va_list ap)
 {
-	int flen, len = 0;
+	int flen;
+	unsigned int iter;
 	const char *iformat = str;
 
-	switch (*iformat)
+	specifier all_spec[] = {{'c', print_char}, {'s', print_string},
+				{'d', print_dec}, {'i', print_dec},
+				{'b', print_bin}, {'%', print_asis}};
+
+	for (iter = 0; iter < sizeof(all_spec) / sizeof(specifier); iter++)
 	{
-	case 'c':
-		if (_putchar(va_arg(ap, int)) < 0)
-			return (-1);
-		len++;
-		break;
-	case 's':
-		flen = print_str(va_arg(ap, char *));
-		if (flen < 0)
-			return (-1);
-		len += flen;
-		break;
-	case '%':
-		if (_putchar('%') < 0)
-			return (-1);
-		len++;
-		break;
-	case 'd':
-	case 'i':
-		flen = print_num(va_arg(ap, int));
-		if (flen < 0)
-			return (-1);
-		len += flen;
-		break;
-	default:
-		break;
+		if (all_spec[iter].fspec == *iformat)
+		{
+			flen = all_spec[iter].print_func(ap);
+			if (flen < 0)
+				return (-1);
+			return (flen);
+		}
 	}
-	return (len);
+	return (-1);
 }

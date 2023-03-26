@@ -1,6 +1,44 @@
 #include "main.h"
 
 /**
+ * print_dec - Called when format specifier is d or i
+ * @ap: va_list variable
+ *
+ * Return: Number of digits printed
+ * -1 if error occurs
+ */
+int print_dec(va_list ap)
+{
+	int flen;
+
+	flen = print_num(va_arg(ap, int));
+	if (flen < 0)
+		return (-1);
+	return (flen);
+}
+
+/**
+ * print_bin - Called when format specifier is b and prints binary conversion
+ * @ap: va_list variable
+ *
+ * Return: Number of digits printed
+ * -1 if error occurs
+ */
+int print_bin(va_list ap)
+{
+	int flen, decval, binval;
+
+	decval = va_arg(ap, int);
+
+	binval = dec2bin(decval);
+
+	flen = print_num(binval);
+	if (flen < 0)
+		return (-1);
+	return (flen);
+}
+
+/**
  * print_num - prints an integer
  * @n: integer
  * Return: lenth of string printed
