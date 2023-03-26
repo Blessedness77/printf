@@ -69,9 +69,15 @@ int format_handle(const char *str, va_list ap)
 			return (-1);
 		len++;
 		break;
+	case 'd':
+	case 'i':
+		flen = print_num(va_arg(ap, int));
+		if (flen < 0)
+			return (-1);
+		len += flen;
+		break;
 	default:
 		break;
 	}
-
 	return (len);
 }
