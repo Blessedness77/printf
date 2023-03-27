@@ -6,9 +6,10 @@
  *
  * Return: Evaluated binary value
  */
-int dec2bin(int dec)
+long int dec2bin(int dec)
 {
-	int binval = 0, decval = dec, si = 0;
+	long int binval = 0, decval = dec;
+	int si  = 0;
 
 	if (dec < 0)
 	{

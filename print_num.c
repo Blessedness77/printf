@@ -26,7 +26,8 @@ int print_dec(va_list ap)
  */
 int print_bin(va_list ap)
 {
-	int flen, decval, binval;
+	int flen, decval;
+	long int binval;
 
 	decval = va_arg(ap, int);
 
@@ -44,9 +45,9 @@ int print_bin(va_list ap)
  * Return: lenth of string printed
  * -1 if error
  */
-int print_num(int n)
+int print_num(long int n)
 {
-	 unsigned int n1;
+	 unsigned long int n1;
 	 int len = 0, flen;
 
 	if (n < 0)

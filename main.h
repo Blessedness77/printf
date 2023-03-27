@@ -32,7 +32,7 @@ int _putchar(char);
 int print_str(const char *);
 int _printf(const char *, ...);
 int format_handle(const char *, va_list);
-int print_num(int);
-int dec2bin(int);
+int print_num(long int);
+long int dec2bin(int);
 
 #endif /* MAIN_H */
